@@ -21,3 +21,9 @@ body, * {
 .hover {
     background-color: black;
 }
+
+button {
+    display: block;
+    margin: 16px auto;
+    padding: 3px 16px;
+}
