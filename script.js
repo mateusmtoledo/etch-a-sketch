@@ -32,9 +32,9 @@ function returnRgbString (color) {
 }
 
 function addBlack (element) {
-    element[1].red = element[1].red - element[1].redDecrement;
-    element[1].green = element[1].green - element[1].greenDecrement;
-    element[1].blue = element[1].blue - element[1].blueDecrement;
+    element[1].red -= element[1].redDecrement;
+    element[1].green -= element[1].greenDecrement;
+    element[1].blue -= element[1].blueDecrement;
     squares[element[0]].style.backgroundColor = returnRgbString(element[1]);
 }
 
@@ -52,7 +52,10 @@ function createGrid(numberOfRows) {
             squares[j].addEventListener('mouseover', () => {
                 let color = returnRandomColor();
                 squares[j].style.backgroundColor = returnRgbString(color);
-                lastTen.forEach(addBlack);
+                for (let k = 0; k < lastTen.length; k++) {
+                    if (lastTen[k][0] === j) lastTen.splice(k, 1);
+                    addBlack(lastTen[k]);
+                }
                 if (lastTen.length >= 10) lastTen.shift();
                 lastTen.push([j, color]);
             });
