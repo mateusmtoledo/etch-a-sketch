@@ -53,8 +53,11 @@ function createGrid(numberOfRows) {
                 let color = returnRandomColor();
                 squares[j].style.backgroundColor = returnRgbString(color);
                 for (let k = 0; k < lastTen.length; k++) {
-                    if (lastTen[k][0] === j) lastTen.splice(k, 1);
-                    addBlack(lastTen[k]);
+                    if (lastTen[k][0] === j) {
+                        lastTen.splice(k, 1);
+                        k--;
+                    }
+                    else addBlack(lastTen[k]);
                 }
                 if (lastTen.length >= 10) lastTen.shift();
                 lastTen.push([j, color]);
